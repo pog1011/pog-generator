@@ -1,0 +1,24 @@
+package ${package}.${moduleName}.service.impl;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import ${package}.${moduleName}.entity.${tableEntity.className}Entity;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ${tableEntity.className}ServiceImpl extends ServiceImpl<${tableEntity.className}Dao, ${tableEntity.className}Entity> implements ${tableEntity.className}Service {
+
+
+    @Override
+    public ResultPage queryList(QueryParams queryParams) {
+
+        IPage<TableEntity> page = this.page(
+                new QueryPage<${tableEntity.className}Entity>().getPage(queryParams),
+                new QueryWrapper<>()
+        );
+
+        return new ResultPage(page);
+    }
+
+
+}

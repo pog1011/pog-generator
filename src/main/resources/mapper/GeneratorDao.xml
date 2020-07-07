@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pog.generator.dao.GeneratorDao">
+
+
+    <select id="queryTable" resultType="com.pog.generator.entity.TableEntity">
+        SELECT TABLE_NAME tableName, TABLE_COMMENT comment
+        FROM `information_schema`.`TABLES` WHERE TABLE_SCHEMA = #{databaseName}
+    </select>
+
+    <select id="queryColumn" resultType="com.pog.generator.entity.ColumnEntity">
+        SELECT COLUMN_NAME columnName,DATA_TYPE dataType,COLUMN_KEY columnKey, COLUMN_COMMENT comment
+        FROM `information_schema`.`COLUMNS`
+        WHERE TABLE_SCHEMA = #{databaseName} AND TABLE_NAME = #{tableName}
+    </select>
+    <select id="queryDatabse" resultType="java.lang.String">
+        SELECT SCHEMA_NAME FROM `information_schema`.`SCHEMATA`
+    </select>
+    <select id="queryTableInfo" resultType="com.pog.generator.entity.TableEntity">
+         SELECT TABLE_NAME tableName, TABLE_COMMENT comment
+        FROM `information_schema`.`TABLES` WHERE TABLE_SCHEMA = #{databaseName} AND TABLE_NAME = #{tableName}
+    </select>
+
+</mapper>

@@ -1,0 +1,8 @@
+package ${package}.${moduleName}.service;
+import com.baomidou.mybatisplus.extension.service.IService;
+
+import ${package}.${moduleName}.entity.${tableEntity.className}Entity;
+
+public interface ${tableEntity.className}Service extends IService<${tableEntity.className}Entity> {
+    ResultPage queryList(QueryParams queryParams);
+}

@@ -1,0 +1,28 @@
+package ${package}.${moduleName}.entity;
+
+
+import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Data;
+import java.io.Serializable;
+import java.util.List;
+
+@Data
+@TableName("${tableEntity.tableName}")
+public class ${tableEntity.className}Entity implements Serializable {
+
+    #foreach ($column in $tableEntity.columns)
+        #if($column.comment)
+
+        /**
+         * $column.comment
+         */
+
+        #end
+        #if ($column.columnName == $tableEntity.primaryKey.columnName)
+        @TableId
+        #end
+        private $column.entityType $column.entityName;
+
+    #end
+
+}

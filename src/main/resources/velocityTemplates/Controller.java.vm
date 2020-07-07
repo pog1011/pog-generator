@@ -1,0 +1,46 @@
+package ${package}.${moduleName}.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import ${package}.${moduleName}.service.${tableEntity.className}Service;
+
+/**
+ * ${tableEntity.comment}
+ * @author ${author}
+ * @email ${email}
+ * @date ${dateTime}
+ */
+
+
+@RestController
+@RequestMapping("${moduleName}/${pathName}")
+public class ${tableEntity.className}Controller {
+
+    @Autowired
+    private ${tableEntity.className}Service ${tableEntity.classname}Service;
+
+    @GetMapping("/list")
+    public CommonResult<ResultPage> queryList(QueryParams queryParams){
+        ResultPage resultPage = ${tableEntity.classname}Service.queryList(queryParams);
+        return CommonResult.success(resultPage);
+    }
+
+    @PostMapping("/delete/{id}")
+    public CommonResult<Object> delete(@PathVariable("id")Long id){
+        ${tableEntity.classname}Service.removeById(id);
+        return CommonResult.success();
+    }
+
+    @PostMapping("/update")
+    public CommonResult<Object> update(${tableEntity.className}Entity ${tableEntity.classname}Entity){
+        ${tableEntity.classname}Service.saveOrUpdate(${tableEntity.classname}Entity);
+        return CommonResult.success();
+    }
+
+    @PostMapping("/insert")
+    public CommonResult<Object> insert(${tableEntity.className}Entity ${tableEntity.classname}Entity){
+        ${tableEntity.classname}Service.save(${tableEntity.classname}Entity);
+        return CommonResult.success();
+    }
+
+}
